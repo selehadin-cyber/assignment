@@ -1,8 +1,12 @@
 'use strict';
-
+var cors = require("cors");
 const app = require('express')();
 const tasksContainer = require('./tasks.json');
 let port = process.env.PORT || 9001
+
+
+/**cors */
+app.use(cors());
 
 /**
  * GET /tasks
