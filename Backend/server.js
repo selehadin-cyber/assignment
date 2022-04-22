@@ -2,6 +2,7 @@
 
 const app = require('express')();
 const tasksContainer = require('./tasks.json');
+let port = process.env.PORT || 9001
 
 /**
  * GET /tasks
@@ -27,7 +28,7 @@ app.get('/task/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
 
   if (!Number.isNaN(id)) {
-    const task = tasks.Container.find((item) => item.id === id);
+    const task = tasksContainer.find((item) => item.id === id);
 
     if (task !== null) {
       return res.status(200).json({
@@ -136,6 +137,6 @@ app.delete('/task/delete/:id', (req, res) => {
   }
 });
 
-app.listen(9001, () => {
+app.listen(port, () => {
   process.stdout.write('The server is available on http://localhost:9001/\n');
 });
