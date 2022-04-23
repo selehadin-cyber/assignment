@@ -63,7 +63,7 @@ app.get('/task/:id', (req, res) => {
  * If the provided id is not a valid number return a status code 400.
  */
 app.put('/task/update/:id/:title/:description', (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const id = parseInt(req.params.id);
 
   if (!Number.isNaN(id)) {
     const task = tasksContainer.tasks.find(item => item.id === id);
@@ -102,9 +102,7 @@ app.post('/task/create/:title/:description', (req, res) => {
 
   tasksContainer.tasks.push(task);
 
-  return res.status(201).json({
-    message: 'Resource created',
-  });
+  return res.status(200).json(tasksContainer);
 });
 
 /**

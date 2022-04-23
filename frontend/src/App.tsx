@@ -6,10 +6,19 @@ import "./App.css";
 import NoteInput from "./components/NoteInput";
 import { NotesState } from "./notesReducer";
 
+interface Note {
+  id: number,
+  title: string
+  description: string
+}
+
 function App() {
   const notes = useSelector<NotesState, NotesState["notes"]>(
     (state) => state.notes
   );
+
+    const [serverNotes, setServerNotes] = useState([])
+
   useEffect(() => {
     const requestOptions: RequestInit = {
       method: 'GET',
@@ -18,17 +27,17 @@ function App() {
     
     fetch("https://veloce-assignment.herokuapp.com/tasks", requestOptions)
       .then(response => response.json())
-      .then(result => console.log(result))
+      .then(result => setServerNotes(result.tasks))
       .catch(error => console.log('error', error));
 
 
 
   }, []);
-
+  console.log(serverNotes)
   const dispatch = useDispatch();
 
-  const addNote = (note: string) => {
-    dispatch({ type: "ADD_NOTE", payload: note });
+  const addNote = (title: string, description: string) => {
+    dispatch({ type: "ADD_NOTE", payload: title });
   };
 
   return (
@@ -39,6 +48,12 @@ function App() {
       <ul>
         {notes.map((note) => (
           <li key={note}>{note}</li>
+        ))}
+      </ul>
+
+      <ul>
+        {serverNotes?.map((note: Note) => (
+          <li key={note.id}>{note.title}</li>
         ))}
       </ul>
     </div>
