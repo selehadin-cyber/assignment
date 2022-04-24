@@ -1,26 +1,13 @@
-export interface NotesState{
-    notes: string[]
-}
 
-const initialState = {
-    notes: []
-}
+const initialState = {}
 
-type Action = {type: "ADD_NOTE", payload: string}
+type Action = {type: "FETCH_NOTE", payload: Object}
 
-export const notesReducer = (state: NotesState = initialState, action: Action) => {
+export const notesReducer = (state = initialState, action: Action) => {
     switch(action.type) {
-        case "ADD_NOTE": {
-            var requestOptions: RequestInit  = {
-                method: 'POST',
-                redirect: 'follow'
-              };
-              
-              fetch("https://veloce-assignment.herokuapp.com/task/create/my fiirst deployed api/i am happy and gratefull to have deployed my first ever api online", requestOptions)
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-            return {...state, notes: [...state.notes, action.payload]}
+        case "FETCH_NOTE": {
+            return {payload: action.payload};
+            
         }
         default:
              return state
