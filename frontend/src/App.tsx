@@ -86,10 +86,10 @@ function App() {
 
       <ul>
         {selector.payload?.tasks?.map((note: any) => (
-          <div key={note.id}>
+          <li key={note.id}>
             
             <Card id={note.id} title={note.title} description={note.description} sendUpdatedNoteToServer={sendUpdatedNoteToServer}/>
-          </div>
+          </li>
         ))}
       </ul>
 

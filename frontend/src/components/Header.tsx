@@ -1,30 +1,42 @@
-import styled from "styled-components"
-import Toggle from "./Toggle"
+import styled from "styled-components";
+import { Moon } from "../Icons/Moon";
+import { Sun } from "../Icons/Sun";
+import Toggle from "./Toggle";
 
 interface ToggleProp {
-    /* sum: (a: number, b: number) => number;
+  /* sum: (a: number, b: number) => number;
     logMessage: (message: string) => void; */
-  
-    // 👇️ turn off type checking
-    toggle: () => any;
-  }
+
+  // 👇️ turn off type checking
+  toggle: () => any;
+}
 
 const StyledHeader = styled.header`
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-max-width: 500px;
-margin: 0 auto;
-`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 0 auto;
+  padding 20px;
+`;
+
+const ToggleContainer = styled.div`
+  display: flex;
+  gap: 5px;
+`;
 
 function Header({ toggle }: ToggleProp) {
   return (
     <StyledHeader>
-        <h1>Note App</h1>
-        <div onClick={() => toggle()}><Toggle/></div>
+      <h1>Note App</h1>
+      <ToggleContainer onClick={() => toggle()}>
+        <Sun />
+        <Toggle />
+        <Moon />
+      </ToggleContainer>
     </StyledHeader>
-  )
+  );
 }
 
-export default Header
+export default Header;

@@ -11,7 +11,7 @@ interface CardProps {
 
 const Title = styled.h2`
   color: white;
-  font-weight: 300;
+  font-weight: 500;
 `;
 
 const Description = styled.p`
@@ -23,6 +23,10 @@ const CardParent = styled.div`
   margin: 20px;
   max-width: 500px;
   border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 25px 12px 18px;
   background: rgb(0, 36, 10);
   background: linear-gradient(
