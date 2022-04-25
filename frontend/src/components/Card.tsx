@@ -1,13 +1,23 @@
 import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { deleteNote } from "../actions/apiActions";
+import { ButtonIcon, Pen } from "../Icons/Pen";
+import { Remove } from "../Icons/Remove";
 import { StyledInput } from "./NoteInput";
 
 interface CardProps {
   id: number;
   title: string;
   description: string;
-  sendUpdatedNoteToServer: any;
+  sendUpdatedNoteToServer: (id: number, titleText: string, descriptionText: string ) => any;
 }
+
+
+
+
+
 
 const Title = styled.h2`
   color: white;
@@ -38,6 +48,7 @@ const CardParent = styled.div`
 `;
 
 const StyledButton = styled.button`
+   
   margin: 20px;
   padding: 1.3em 3em;
   font-size: 12px;
@@ -65,6 +76,15 @@ const StyledButton = styled.button`
   }
 `;
 
+const FlexRow = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: 10px;
+`;
+
 export const StyledNoteEditSection = styled.div`
   padding: 20px 56px 20px 56px;
   background-color: rgba(0, 0, 0, 0.75);
@@ -84,6 +104,23 @@ const Card: React.FC<CardProps> = ({
   const [descriptionText, setDescriptionText] = useState(description);
   const [edit, setEdit] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const deleteNoteOnServer = (id: number) => {
+    var requestOptions: any = {
+      method: "DELETE",
+      redirect: "follow"
+    };
+
+    fetch(
+      `https://veloce-assignment.herokuapp.com/task/delete/${id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => dispatch({ type: "FETCH_NOTE", payload: result }))
+      .catch((error) => console.log("error", error));
+  };
+
   const updateTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitleText(event.target.value);
   };
@@ -96,7 +133,7 @@ const Card: React.FC<CardProps> = ({
     sendUpdatedNoteToServer(id, titleText, descriptionText);
     setTitleText("");
     setDescriptionText("");
-    handleEdit()
+    handleEdit();
   };
 
   const handleEdit = () => {
@@ -110,8 +147,15 @@ const Card: React.FC<CardProps> = ({
     <CardParent>
       <Title>{title}</Title>
       <Description>{description}</Description>
-      <StyledButton onClick={() => handleEdit()}>Edit</StyledButton>
-
+      
+      <FlexRow>
+        <ButtonIcon onClick={() => handleEdit()}>
+          <Pen/>
+        </ButtonIcon>
+        <ButtonIcon onClick={() => deleteNoteOnServer(id)}>
+          <Remove />
+        </ButtonIcon>
+      </FlexRow>
       {edit && (
         <StyledNoteEditSection>
           <StyledInput
@@ -137,4 +181,5 @@ const Card: React.FC<CardProps> = ({
   );
 };
 
-export default Card;
+//export default Card;
+export default connect(null, { deleteNote })(Card);
