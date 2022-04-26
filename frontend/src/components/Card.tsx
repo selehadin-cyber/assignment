@@ -18,12 +18,12 @@ interface CardProps {
 
 
 const Title = styled.h2`
-  color: white;
+  color: ${(props) => props.theme.color};
   font-weight: 500;
 `;
 
 const Description = styled.p`
-  color: white;
+  color: ${(props) => props.theme.color};
   font-weight: 300;
 `;
 
@@ -36,13 +36,10 @@ const CardParent = styled.div`
   justify-content: center;
   align-items: center;
   padding: 25px 12px 18px;
-  background: rgb(0, 36, 10);
-  background: linear-gradient(
-    45deg,
-    rgba(0, 36, 10, 1) 0%,
-    rgba(9, 66, 121, 1) 35%,
-    rgba(255, 0, 215, 1) 100%
-  );
+  background-color: ${(props) => props.theme.gradientColor};
+  background-image: ${(props) => props.theme.gradientImage};
+  
+  
 `;
 
 const StyledButton = styled.button`

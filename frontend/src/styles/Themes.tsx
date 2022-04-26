@@ -12,8 +12,8 @@ export interface ThemeType {
   }
 
 
-export const darkTheme = { color: "black", background: "white", left: "1px" };
-export const LightTheme = { color: "white", background: "black", left: "30px" };
+export const darkTheme = { color: "black", background: "white", left: "1px",  gradientColor: "#D9AFD9", gradientImage: "linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);" };
+export const LightTheme = { color: "white", background: "black", left: "30px", gradientColor: "#FF3CAC", gradientImage: "linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);" };
 
 export const GlobalStyles = createGlobalStyle<{theme: ThemeType}>`
   body {
