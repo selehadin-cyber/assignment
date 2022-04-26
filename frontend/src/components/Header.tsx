@@ -19,6 +19,7 @@ const StyledHeader = styled.header`
   max-width: 500px;
   margin: 0 auto;
   padding 20px;
+  font-family: Poppins;
 `;
 
 const ToggleContainer = styled.div`

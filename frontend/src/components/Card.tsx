@@ -20,11 +20,13 @@ interface CardProps {
 const Title = styled.h2`
   color: ${(props) => props.theme.color};
   font-weight: 500;
+  font-family: Poppins;
 `;
 
 const Description = styled.p`
   color: ${(props) => props.theme.color};
   font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
 `;
 
 const CardParent = styled.div`
@@ -77,7 +79,8 @@ const FlexRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-block: 10px;
+  margin-block: 20px;
+  padding-inline: 45px;
 `;
 
 export const StyledNoteEditSection = styled.div`

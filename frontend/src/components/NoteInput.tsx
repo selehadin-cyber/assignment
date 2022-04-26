@@ -1,8 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { sendNoteToServer } from "../actions/apiActions";
-
-
+import toast, { Toaster } from "react-hot-toast";
 
 export const StyledNoteCreateSection = styled.div`
   display: flex;
@@ -21,11 +20,12 @@ export const StyledNoteCreateSection = styled.div`
 export const StyledInput = styled.input`
   margin: 15px auto;
   padding: 15px;
+  font-family: "Open Sans", sans-serif;
   outline: 2px solid transparent;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   outline-offset: 2px;
   width: 100%;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(51 51 51 / var(--tw-bg-opacity));
   padding: 1rem 1rem;
@@ -77,13 +77,38 @@ const NoteInput: React.FC = () => {
   };
 
   const addNoteClick = () => {
-    sendNoteToServer(title, descriptionText);
-    setTitle("");
-    setDescriptionText("");
+    if (!title || !descriptionText) {
+      //error message when a form is left empty
+      toast("Fields can not be left empty🤔", {
+        style: {
+          background: "red",
+          color: "white",
+          fontWeight: "bolder",
+          fontSize: "17px",
+          padding: "20px",
+        },
+      });
+      return;
+    } else {
+      sendNoteToServer(title, descriptionText);
+      toast("Note saved 👏!", {
+        duration: 1000,
+        style: {
+          background: "green",
+          color: "white",
+          fontWeight: "bolder",
+          fontSize: "17px",
+          padding: "20px",
+        },
+      });
+      setTitle("");
+      setDescriptionText("");
+    }
   };
 
   return (
     <StyledNoteCreateSection>
+      <Toaster position="bottom-center" />
       <StyledInput
         type="text"
         name=""
