@@ -39,7 +39,7 @@ function App() {
         ))}
       </ul>
 
-      
+      {/* <footer>made with love by Selehadin A.</footer> */}
       </ThemeProvider>
   );
 }

@@ -21,12 +21,14 @@ const Title = styled.h2`
   color: ${(props) => props.theme.color};
   font-weight: 500;
   font-family: Poppins;
+  text-align: center;
 `;
 
 const Description = styled.p`
   color: ${(props) => props.theme.color};
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
+  padding-top: 10px;
 `;
 
 const CardParent = styled.div`
@@ -37,7 +39,7 @@ const CardParent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 25px 12px 18px;
+  padding: 25px 20px 18px;
   background-color: ${(props) => props.theme.gradientColor};
   background-image: ${(props) => props.theme.gradientImage};
   
@@ -80,11 +82,13 @@ const FlexRow = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-block: 20px;
+  padding-top: 30px;
   padding-inline: 45px;
 `;
 
 export const StyledNoteEditSection = styled.div`
-  padding: 20px 56px 20px 56px;
+  padding-inline: 10px;
+  border-radius: 7px;
   background-color: rgba(0, 0, 0, 0.75);
   margin: 0 auto;
   @media (min-width: 768px) {
