@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
+import { fetchNotesFromServer, sendUpdatedNoteToServer } from "./actions/apiActions";
 
 import Card from "./components/Card";
 import Header from "./components/Header";
 import NoteInput from "./components/NoteInput";
 import { darkTheme, GlobalStyles, LightTheme } from "./styles/Themes";
 
-interface Notes {
-  payload: {
-    tasks: Array<object>
-  }
-}
- interface Note {
-   id: number
-   title: string
-   description: string
- }
+
 
 function App() {
   const selector: any = useSelector((store) => store);
@@ -25,53 +16,8 @@ function App() {
   const [theme, setTheme] = React.useState("light");
 
   useEffect(() => {
-    var requestOptions: any = {
-      method: "GET",
-      redirect: "follow"
-    };
-
-    fetch("https://veloce-assignment.herokuapp.com/tasks", requestOptions)
-      .then((response) => response.json())
-      .then((result) => dispatch({ type: "FETCH_NOTE", payload: result }))
-      .catch((error) => console.log("error", error));
+    fetchNotesFromServer()
   }, []);
-
-
-  const dispatch = useDispatch();
-
-  const addNote = (title: string, description: string) => {
-    dispatch({ type: "ADD_NOTE", payload: title });
-  };
-
-  const sendNoteToServer = (title: string, description: string) => {
-    var requestOptions: any = {
-      method: "POST",
-      redirect: "follow"
-    };
-
-    fetch(
-      `https://veloce-assignment.herokuapp.com/task/create/${title}/${description}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => dispatch({ type: "FETCH_NOTE", payload: result }))
-      .catch((error) => console.log("error", error));
-  };
-
-  const sendUpdatedNoteToServer = (id: number, title: string, description: string) => {
-    var requestOptions: any = {
-      method: "PUT",
-      redirect: "follow"
-    };
-
-    fetch(
-      `https://veloce-assignment.herokuapp.com/task/update/${id}/${title}/${description}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => dispatch({ type: "FETCH_NOTE", payload: result }))
-      .catch((error) => console.log("error", error));
-  };
 
   //dark-mode toggle function
   const toggleFunction = () => {
@@ -82,7 +28,7 @@ function App() {
     <ThemeProvider theme={theme === "light" ? LightTheme : darkTheme}>
       <GlobalStyles />
       <Header toggle={toggleFunction}/>
-      <NoteInput sendNoteToServer={sendNoteToServer} />
+      <NoteInput />
 
       <ul>
         {selector.payload?.tasks?.map((note: any) => (

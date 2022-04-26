@@ -1,4 +1,4 @@
-import { createGlobalStyle, useTheme } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 
 export interface ThemeType {

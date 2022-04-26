@@ -1,8 +1,6 @@
 import { ChangeEvent, useState } from "react";
-import { useDispatch } from "react-redux";
-import { connect } from "react-redux";
 import styled from "styled-components";
-import { deleteNote } from "../actions/apiActions";
+import { deleteNoteOnServerFile } from "../actions/apiActions";
 import { ButtonIcon, Pen } from "../Icons/Pen";
 import { Remove } from "../Icons/Remove";
 import { StyledInput } from "./NoteInput";
@@ -104,22 +102,8 @@ const Card: React.FC<CardProps> = ({
   const [descriptionText, setDescriptionText] = useState(description);
   const [edit, setEdit] = useState(false);
 
-  const dispatch = useDispatch();
 
-  const deleteNoteOnServer = (id: number) => {
-    var requestOptions: any = {
-      method: "DELETE",
-      redirect: "follow"
-    };
-
-    fetch(
-      `https://veloce-assignment.herokuapp.com/task/delete/${id}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => dispatch({ type: "FETCH_NOTE", payload: result }))
-      .catch((error) => console.log("error", error));
-  };
+  
 
   const updateTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitleText(event.target.value);
@@ -152,7 +136,7 @@ const Card: React.FC<CardProps> = ({
         <ButtonIcon onClick={() => handleEdit()}>
           <Pen/>
         </ButtonIcon>
-        <ButtonIcon onClick={() => deleteNoteOnServer(id)}>
+        <ButtonIcon onClick={() => deleteNoteOnServerFile(id)}>
           <Remove />
         </ButtonIcon>
       </FlexRow>
@@ -181,5 +165,4 @@ const Card: React.FC<CardProps> = ({
   );
 };
 
-//export default Card;
-export default connect(null, { deleteNote })(Card);
+export default Card;

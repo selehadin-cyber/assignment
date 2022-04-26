@@ -1,9 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
+import { sendNoteToServer } from "../actions/apiActions";
 
-interface NoteInputProps {
-  addNote(title: string, description: string): void;
-}
+
 
 export const StyledNoteCreateSection = styled.div`
   display: flex;
@@ -61,7 +60,7 @@ export const StyledButton = styled.button`
   }
 `;
 
-const NoteInput: React.FC<any> = ({ sendNoteToServer }) => {
+const NoteInput: React.FC = () => {
   const [title, setTitle] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
 
