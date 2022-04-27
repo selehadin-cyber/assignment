@@ -6,8 +6,7 @@ const StyledFooter = styled.footer`
   text-align: center;
   font-family: "Open Sans", sans-serif;
   width: 100%;
-  position: fixed;
-  bottom: 10px;
+  padding-top: 40px;
   svg {
     width: 15px;
     stroke: ${(props) => props.theme.color};

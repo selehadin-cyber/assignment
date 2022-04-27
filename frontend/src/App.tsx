@@ -7,12 +7,13 @@ import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import NoteInput from "./components/NoteInput";
+import { RootState } from "./store";
 import { darkTheme, GlobalStyles, LightTheme } from "./styles/Themes";
 
 
 
 function App() {
-  const selector: any = useSelector((store) => store);
+  const selector: any = useSelector((store:RootState) => store);
 
   const [theme, setTheme] = React.useState("light");
 

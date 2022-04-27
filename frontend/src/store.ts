@@ -6,3 +6,5 @@ export const store = createStore(notesReducer, composeWithDevTools(
     applyMiddleware()
     
   ))
+
+export type RootState = ReturnType<typeof store.getState>
