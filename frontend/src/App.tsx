@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { fetchNotesFromServer, sendUpdatedNoteToServer } from "./actions/apiActions";
 
 import Card from "./components/Card";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import NoteInput from "./components/NoteInput";
 import { darkTheme, GlobalStyles, LightTheme } from "./styles/Themes";
@@ -38,8 +39,7 @@ function App() {
           </li>
         ))}
       </ul>
-
-      {/* <footer>made with love by Selehadin A.</footer> */}
+        <Footer />
       </ThemeProvider>
   );
 }
