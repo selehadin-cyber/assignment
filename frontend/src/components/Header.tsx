@@ -8,7 +8,7 @@ interface ToggleProp {
     logMessage: (message: string) => void; */
 
   // 👇️ turn off type checking
-  toggle: () => any;
+  toggle: () => void;
 }
 
 const StyledHeader = styled.header`

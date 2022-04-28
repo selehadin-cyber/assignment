@@ -7,7 +7,7 @@ import { 
   } from './types';
 
 export const deleteNoteOnServerFile = (id: number) => {
-    var requestOptions: any = {
+    var requestOptions:  RequestInit = {
       method: "DELETE",
       redirect: "follow"
     };
@@ -22,7 +22,7 @@ export const deleteNoteOnServerFile = (id: number) => {
   };
 
 export const fetchNotesFromServer = () => {
-  var requestOptions: any = {
+  var requestOptions:  RequestInit = {
     method: "GET",
     redirect: "follow"
   };
@@ -34,7 +34,7 @@ export const fetchNotesFromServer = () => {
 }
 
 export const sendNoteToServer = (title: string, description: string) => {
-  var requestOptions: any = {
+  var requestOptions:  RequestInit = {
     method: "POST",
     redirect: "follow"
   };
@@ -49,7 +49,7 @@ export const sendNoteToServer = (title: string, description: string) => {
 };
 
 export const sendUpdatedNoteToServer = (id: number, title: string, description: string) => {
-  var requestOptions: any = {
+  var requestOptions:  RequestInit = {
     method: "PUT",
     redirect: "follow"
   };

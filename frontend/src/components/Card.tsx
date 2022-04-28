@@ -128,7 +128,6 @@ const Card: React.FC<CardProps> = ({
     setEdit(!edit);
     setTitleText(titleText);
     setDescriptionText(descriptionText);
-    console.log(edit);
   };
 
   return (
